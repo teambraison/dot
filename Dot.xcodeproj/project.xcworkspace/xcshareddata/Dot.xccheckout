@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0C9423C0-003D-45DC-9285-D547C3524795</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Dot</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>19CFD0B29718D2969E22A35EF35DCD32AF07EFBE</key>
+		<string>https://github.com/teambraison/dot</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Dot.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>19CFD0B29718D2969E22A35EF35DCD32AF07EFBE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/teambraison/dot</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>19CFD0B29718D2969E22A35EF35DCD32AF07EFBE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>19CFD0B29718D2969E22A35EF35DCD32AF07EFBE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Dot</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -45,7 +45,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
         resetPressed.addTarget(self, action: "resetTapped", forControlEvents: .TouchUpInside)
         
+        
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "returnToPreviousScreen")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func returnToPreviousScreen()
+    {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func addTapGestureToUI(theView: UIView) {

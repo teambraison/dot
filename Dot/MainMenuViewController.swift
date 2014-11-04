@@ -21,8 +21,8 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         menuViewController.delegate = self
         menuViewController.dataSource = self
-        
         self.menuViewController.registerNib(UINib(nibName: "MenuItem", bundle: nil), forCellReuseIdentifier: "menuitem")
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,7 +45,11 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var selectedMenu: String = menuList[indexPath.row]
-        println("Did select option \(selectedMenu)")
+        if(indexPath.row == 1) {
+            var viewController: ContactsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contacts") as ContactsViewController
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
@@ -65,6 +69,7 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
 //            }
 //        }
     }
+    
     
     
 }

@@ -19,6 +19,7 @@
 		5D93595019F8F71A00CBC9BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D93594E19F8F71A00CBC9BD /* LaunchScreen.xib */; };
 		5D93595C19F8F71A00CBC9BD /* DotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93595B19F8F71A00CBC9BD /* DotTests.swift */; };
 		5DDE2F071A079C0900553B2A /* MenuViewTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE2F061A079C0900553B2A /* MenuViewTable.swift */; };
+		5DDE2F091A07AC8C00553B2A /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE2F081A07AC8C00553B2A /* ContactsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		5D93595A19F8F71A00CBC9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D93595B19F8F71A00CBC9BD /* DotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotTests.swift; sourceTree = "<group>"; };
 		5DDE2F061A079C0900553B2A /* MenuViewTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewTable.swift; sourceTree = "<group>"; };
+		5DDE2F081A07AC8C00553B2A /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				5D93594319F8F71A00CBC9BD /* Supporting Files */,
 				5D85BFC81A073AA50055114A /* MenuItem.xib */,
 				5D85BFCC1A0773B80055114A /* Item.swift */,
+				5DDE2F081A07AC8C00553B2A /* ContactsViewController.swift */,
 			);
 			path = Dot;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D85BFCD1A0773B80055114A /* Item.swift in Sources */,
+				5DDE2F091A07AC8C00553B2A /* ContactsViewController.swift in Sources */,
 				5D85BFC31A0725300055114A /* MainMenuViewController.swift in Sources */,
 				5DDE2F071A079C0900553B2A /* MenuViewTable.swift in Sources */,
 				5D85BFC51A07394B0055114A /* MenuItem.swift in Sources */,

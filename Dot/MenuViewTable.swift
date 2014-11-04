@@ -22,8 +22,12 @@ class MenuViewTable:UITableView
             if(CGRectContainsPoint(r, point)) {
                 println("Touching \(item.itemLabel.text)")
                 self.selectRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.None)
+                item.itemLabel.font = UIFont(name: "Helvetica Neue", size: 50)
+            } else {
+                item.itemLabel.font = UIFont(name: "Helvetica Neue", size: 44)
             }
       //      println("\(item.itemLabel.text) has bound bound \(bounds)")
         }
     }
+    
 }
