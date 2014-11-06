@@ -9,25 +9,53 @@
 import Foundation
 import UIKit
 
-class MainMenuViewController:UIViewController, UITableViewDataSource, UITableViewDelegate
+class MainMenuViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate
 {
     
     @IBOutlet weak var menuViewController: MenuViewTable!
     
-    var menuList = ["Navigation", "Messaging", "Time"]
+    let menuList = ["Navigation", "Messaging", "Time"]
+    
+    let destinationVCIdentifiers = ["placeholder", "contacts", ""]
+    
+    var placeholder = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menuViewController.delegate = self
         menuViewController.dataSource = self
+        menuViewController.multipleTouchEnabled = true
         self.menuViewController.registerNib(UINib(nibName: "MenuItem", bundle: nil), forCellReuseIdentifier: "menuitem")
+
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: MenuItem = tableView.dequeueReusableCellWithIdentifier("menuitem") as MenuItem
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.itemLabel.text = menuList[indexPath.row]
+        println("\(destinationVCIdentifiers[indexPath.row])")
+       
+        if(!destinationVCIdentifiers[indexPath.row].isEmpty) {
+            let vc: UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier(destinationVCIdentifiers[indexPath.row]) as UIViewController
+            cell.viewController = self
+            cell.destinationController = vc
+        } else {
+            cell.viewController = nil
+            cell.destinationController = nil
+        }
+        var tapGesture = UITapGestureRecognizer(target: menuViewController, action: "nextAction")
+        var holdGesture = UILongPressGestureRecognizer(target: menuViewController, action: "longPressDetected")
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.delegate = menuViewController
+        holdGesture.numberOfTouchesRequired = 1
+        holdGesture.delegate = menuViewController
+        holdGesture.allowableMovement = 0
+        cell.addGestureRecognizer(tapGesture)
+        cell.addGestureRecognizer(holdGesture)
+        cell.multipleTouchEnabled = true
+
         return cell
     }
     
@@ -39,36 +67,10 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
         return MenuItem.height()
     }
     
-//    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return false
-//    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var selectedMenu: String = menuList[indexPath.row]
-        if(indexPath.row == 1) {
-            var viewController: ContactsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contacts") as ContactsViewController
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
         
     }
     
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-//        var cells = menuViewController.visibleCells()
-//        
-//        let point: CGPoint = touches.anyObject()!.locationInView(self.view) as CGPoint
-//        
-//        println("X: \(point.x) Y: \(point.y)")
-//        
-//        for(var i = 0; i < cells.count; i++)
-//        {
-//            var tableCell: MenuItem = cells[i] as MenuItem
-//            var anyPoint: UITouch = touches.anyObject() as UITouch
-//            var tableCellName = tableCell.itemLabel.text
-//            if(CGRectContainsPoint(tableCell.bounds, anyPoint.locationInView(tableCell))) {
-//                println("Touches \(tableCellName)")
-//            }
-//        }
-    }
     
     
     

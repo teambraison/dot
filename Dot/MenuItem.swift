@@ -9,15 +9,22 @@
 import Foundation
 import UIKit
 
+protocol MenuItemDelegate {
+    func menuItemDidChooseThisMenu(menuItem: MenuItem, title:String)
+    func menuItemDidBeganTouch(menuItem: MenuItem, title:String)
+    func menuItemDidEndTouch(menuItem: MenuItem, title:String)
+}
+
 class MenuItem:UITableViewCell
 {
+    
     @IBOutlet weak var itemLabel: UILabel!
+    var delegate:MenuItemDelegate?
+    
+    var viewController: UIViewController!
+    var destinationController: UIViewController!
     
     class func height() ->CGFloat {
-        return 84.0
-    }
-    
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-    //    println("My name is \(itemLabel.text)")
+        return 90.0
     }
 }

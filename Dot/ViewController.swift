@@ -46,6 +46,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         resetPressed.addTarget(self, action: "resetTapped", forControlEvents: .TouchUpInside)
         
         
+        var swipeDown = UISwipeGestureRecognizer(target: self, action: "insertSpacePunctuation")
+        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        var twoSwipeDown = UISwipeGestureRecognizer(target: self, action: "insertPeriodPunctuation")
+        twoSwipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        twoSwipeDown.numberOfTouchesRequired = 2
+        self.view.addGestureRecognizer(twoSwipeDown)
+        
+        var swipeUp = UISwipeGestureRecognizer(target: self, action: "insertCommaPunctuation")
+        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "deleteOneCharacter")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
+        
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "returnToPreviousScreen")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
@@ -53,10 +70,33 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func insertSpacePunctuation() {
+        output += " "
+        outputLabel.text = output
+    }
+    
+    func insertCommaPunctuation() {
+        output += ","
+        outputLabel.text = output
+    }
+    
+    func deleteOneCharacter() {
+        if(countElements(output) > 0) {
+            output = output.substringToIndex(output.endIndex.predecessor())
+            outputLabel.text = output
+        }
+    }
+    
+    func insertPeriodPunctuation() {
+        output += "."
+        outputLabel.text = output
+    }
+    
     func returnToPreviousScreen()
     {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     
     func addTapGestureToUI(theView: UIView) {
         var oneTap = UITapGestureRecognizer(target: self, action:"viewTapped:")
