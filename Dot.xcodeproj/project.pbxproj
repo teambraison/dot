@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5D6C1EEF1A0CB68000B3953B /* ContactItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6C1EEE1A0CB68000B3953B /* ContactItem.xib */; };
 		5D6C1EF11A0CB78A00B3953B /* ContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C1EF01A0CB78A00B3953B /* ContactItem.swift */; };
+		5D6F73731A10A1FC00A803F5 /* DotTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F73721A10A1FC00A803F5 /* DotTableView.swift */; };
+		5D6F73751A10A7AC00A803F5 /* DotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F73741A10A7AC00A803F5 /* DotItem.swift */; };
 		5D85BFC31A0725300055114A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D85BFC21A0725300055114A /* MainMenuViewController.swift */; };
 		5D85BFC51A07394B0055114A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D85BFC41A07394B0055114A /* MenuItem.swift */; };
 		5D85BFC91A073AA50055114A /* MenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D85BFC81A073AA50055114A /* MenuItem.xib */; };
@@ -20,7 +22,7 @@
 		5D93594D19F8F71A00CBC9BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D93594C19F8F71A00CBC9BD /* Images.xcassets */; };
 		5D93595019F8F71A00CBC9BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D93594E19F8F71A00CBC9BD /* LaunchScreen.xib */; };
 		5D93595C19F8F71A00CBC9BD /* DotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93595B19F8F71A00CBC9BD /* DotTests.swift */; };
-		5DDE2F071A079C0900553B2A /* MenuViewTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE2F061A079C0900553B2A /* MenuViewTable.swift */; };
+		5DB0C9921A10CBDE008E16CD /* MenuViewTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB0C9911A10CBDE008E16CD /* MenuViewTable.swift */; };
 		5DDE2F091A07AC8C00553B2A /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE2F081A07AC8C00553B2A /* ContactsViewController.swift */; };
 		5DF8AD0C1A0897010083B0DD /* PlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8AD0B1A0897010083B0DD /* PlaceHolder.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		5D6C1EEE1A0CB68000B3953B /* ContactItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactItem.xib; sourceTree = "<group>"; };
 		5D6C1EF01A0CB78A00B3953B /* ContactItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactItem.swift; sourceTree = "<group>"; };
+		5D6F73721A10A1FC00A803F5 /* DotTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotTableView.swift; sourceTree = "<group>"; };
+		5D6F73741A10A7AC00A803F5 /* DotItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotItem.swift; sourceTree = "<group>"; };
 		5D85BFC21A0725300055114A /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		5D85BFC41A07394B0055114A /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		5D85BFC81A073AA50055114A /* MenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuItem.xib; sourceTree = "<group>"; };
@@ -53,7 +57,7 @@
 		5D93595519F8F71A00CBC9BD /* DotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D93595A19F8F71A00CBC9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D93595B19F8F71A00CBC9BD /* DotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotTests.swift; sourceTree = "<group>"; };
-		5DDE2F061A079C0900553B2A /* MenuViewTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewTable.swift; sourceTree = "<group>"; };
+		5DB0C9911A10CBDE008E16CD /* MenuViewTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewTable.swift; sourceTree = "<group>"; };
 		5DDE2F081A07AC8C00553B2A /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		5DF8AD0B1A0897010083B0DD /* PlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHolder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,10 +144,12 @@
 		5DA71FB31A0B0F0100BE210C /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				5DB0C9911A10CBDE008E16CD /* MenuViewTable.swift */,
 				5D85BFC41A07394B0055114A /* MenuItem.swift */,
 				5D85BFC81A073AA50055114A /* MenuItem.xib */,
-				5DDE2F061A079C0900553B2A /* MenuViewTable.swift */,
 				5D85BFC21A0725300055114A /* MainMenuViewController.swift */,
+				5D6F73721A10A1FC00A803F5 /* DotTableView.swift */,
+				5D6F73741A10A7AC00A803F5 /* DotItem.swift */,
 			);
 			name = MainMenu;
 			sourceTree = "<group>";
@@ -288,13 +294,15 @@
 			files = (
 				5DDE2F091A07AC8C00553B2A /* ContactsViewController.swift in Sources */,
 				5D85BFC31A0725300055114A /* MainMenuViewController.swift in Sources */,
-				5DDE2F071A079C0900553B2A /* MenuViewTable.swift in Sources */,
 				5D85BFC51A07394B0055114A /* MenuItem.swift in Sources */,
+				5D6F73751A10A7AC00A803F5 /* DotItem.swift in Sources */,
+				5DB0C9921A10CBDE008E16CD /* MenuViewTable.swift in Sources */,
 				5DF8AD0C1A0897010083B0DD /* PlaceHolder.swift in Sources */,
 				5D93594819F8F71A00CBC9BD /* ViewController.swift in Sources */,
 				5D6C1EF11A0CB78A00B3953B /* ContactItem.swift in Sources */,
 				5D93594619F8F71A00CBC9BD /* AppDelegate.swift in Sources */,
 				5D89377F1A088A50004B0280 /* Data.swift in Sources */,
+				5D6F73731A10A1FC00A803F5 /* DotTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

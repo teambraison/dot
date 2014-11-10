@@ -11,15 +11,12 @@ import UIKit
 
 class ContactsViewController:UIViewController, UITableViewDataSource, UITableViewDelegate
 {
-    @IBOutlet weak var contactsTableView: UITableView!
-    
-    var contactNames = ["Eric Kim", "Mason Joo", "Jason Lee", "Kikwang Sung"]
-    var messages = ["야 오디야", "아이퐁 식스", "I'm coming home tonight to eat dinner", "그럼"]
+    @IBOutlet weak var contactsTableView: DotTableView!
     
     override func viewDidLoad() {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
-        self.contactsTableView.registerNib(UINib(nibName: "ContactItem", bundle: nil), forCellReuseIdentifier: "contactitem")
+        self.contactsTableView.registerNib(UINib(nibName: Data.contactItemNibName(), bundle: nil), forCellReuseIdentifier: Data.contactItemNibID())
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "returnToPreviousScreen")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -33,25 +30,30 @@ class ContactsViewController:UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell: ContactItem = tableView.dequeueReusableCellWithIdentifier("contactitem") as ContactItem
-        cell.contactName.font = UIFont(name: "Helvetica Neue", size: 35)
-        cell.contactName.text = contactNames[indexPath.row]
-        cell.contactMessage.text = messages[indexPath.row]
+        var cell: ContactItem = tableView.dequeueReusableCellWithIdentifier(Data.contactItemNibID()) as ContactItem
+        cell.contactName.font = UIFont(name: Data.defaultFontFamily(), size: Data.defaultFontSize())
+        cell.contactName.text = Data.contactNames()[indexPath.row]
+        cell.contactMessage.text = Data.contactMessages()[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.viewController = self
+        
+        let vc: UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Data.keyboardViewControllerID()) as UIViewController
+        cell.destinationController = vc
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            var contactsViewController: ViewController = self.storyboard?.instantiateViewControllerWithIdentifier("keyboard") as ViewController
+            var contactsViewController: ViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Data.keyboardViewControllerID()) as ViewController
             self.navigationController?.pushViewController(contactsViewController, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return Data.contactNames().count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return MenuItem.height()
+        return Data.contactItemHeight()
     }
     
 }

@@ -9,8 +9,15 @@
 import Foundation
 import UIKit
 
-class ContactItem:UITableViewCell
+class ContactItem:DotItem
 {
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactMessage: UILabel!
+    
+    override func allLabels() -> [UILabel] {
+        var lables: [UILabel] = []
+        lables.append(contactName)
+        lables.append(contactMessage)
+        return lables
+    }
 }

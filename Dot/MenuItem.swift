@@ -9,21 +9,13 @@
 import Foundation
 import UIKit
 
-protocol MenuItemDelegate {
-    func menuItemDidChooseThisMenu(menuItem: MenuItem, title:String)
-    func menuItemDidBeganTouch(menuItem: MenuItem, title:String)
-    func menuItemDidEndTouch(menuItem: MenuItem, title:String)
-}
-
-class MenuItem:UITableViewCell
+class MenuItem:DotItem
 {
-    
     @IBOutlet weak var itemLabel: UILabel!
-    var delegate:MenuItemDelegate?
-    var viewController: UIViewController!
-    var destinationController: UIViewController!
     
-    class func height() ->CGFloat {
-        return 90.0
+    override func allLabels() -> [UILabel] {
+        var labels: [UILabel] = []
+        labels.append(itemLabel)
+        return labels
     }
 }

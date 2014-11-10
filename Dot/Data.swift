@@ -7,9 +7,79 @@
 //
 
 import Foundation
+import UIKit
 
 class Data
 {
+    let enlargedSizeMultiple = 1.2
+    let defaultTextSize = 35
+    
+    class func defaultFontFamily() -> String {
+        return "Helvetica Neue"
+    }
+    
+    class func defaultFontSize() -> CGFloat {
+        return 40
+    }
+    
+    class func enlargedFactor() -> CGFloat {
+        return 1.2
+    }
+    
+    class func enlargeSizeFactor(originalSize: CGFloat) -> CGFloat {
+        return originalSize * enlargedFactor()
+    }
+    
+    class func returnFontSizeToDefault(enlargedSize: CGFloat) -> CGFloat {
+        return enlargedSize / enlargedFactor()
+    }
+    
+    class func menuNames() -> [String] {
+        return ["Navigation", "Messaging", "Time"]
+    }
+    
+    class func menuDestinationIDS() -> [String] {
+        return ["placeholder", "contacts", ""]
+    }
+    
+    class func menuItemNibName() -> String {
+        return "MenuItem"
+    }
+    
+    class func menuItemNibID() -> String {
+        return "menuitem"
+    }
+    
+    class func menuItemHeight() -> CGFloat {
+        return 90.0
+    }
+    
+    class func keyboardViewControllerID() -> String {
+        return "keyboard"
+    }
+    
+    class func contactNames() -> [String] {
+        return ["Eric Kim", "Mason Joo", "Jason Lee", "Kikwang Sung"]
+    }
+    
+    class func contactMessages() -> [String] {
+        return ["야 오디야", "아이퐁 식스", "뭐해", "그럼"]
+    }
+    
+    class func contactItemNibName() -> String {
+        return "ContactItem"
+    }
+    
+    class func contactItemNibID() -> String {
+        return "contactitem"
+    }
+    
+    class func contactItemHeight() -> CGFloat {
+        return 92.0
+    }
+    
+    
+    
     class func time() -> String
     {
         let date = NSDate()
