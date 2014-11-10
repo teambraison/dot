@@ -20,7 +20,6 @@ class MenuItem:UITableViewCell
     
     @IBOutlet weak var itemLabel: UILabel!
     var delegate:MenuItemDelegate?
-    
     var viewController: UIViewController!
     var destinationController: UIViewController!
     

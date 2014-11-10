@@ -14,25 +14,41 @@ class MenuViewTable:UITableView, UIGestureRecognizerDelegate
     let enlargedTextSize:CGFloat = 50
     let originalTextSize:CGFloat = 40
     let fontFamilyName = "Helvetica Neue"
-    
     var currentSelectedItem: MenuItem!
-    var longPress: Bool = false
-    
+    var touchCount = 0
     
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         checkForTouchPoint(touches)
     }
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        touchCount++
         checkForTouchPoint(touches)
     }
-
+    
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        checkForTouchPoint(touches)
+        println("Touch count is \(touchCount)")
+        if(touchCount == 2) {
+            touchCount = 0
+            deselectMenuItem(currentSelectedItem)
+            nextAction()
+        } else if(touchCount == 1) {
+            touchCount = 0
+            deselectMenuItem(currentSelectedItem)
+        }
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    func highlightSelectedMenuItem() {
+        currentSelectedItem.itemLabel.font = UIFont(name: fontFamilyName, size:enlargedTextSize)
+    }
+    
+    func deselectMenuItem(item: MenuItem) {
+        item.itemLabel.font = UIFont(name: fontFamilyName, size:originalTextSize)
     }
     
     
@@ -45,33 +61,22 @@ class MenuViewTable:UITableView, UIGestureRecognizerDelegate
             var bounds = cells[i].bounds
             var item: MenuItem = cells[i] as MenuItem
             var r:CGRect = item.frame
-            performChange(item, shouldChange:CGRectContainsPoint(r, point));
+            if(CGRectContainsPoint(r, point)) {
+                currentSelectedItem = item
+                highlightSelectedMenuItem()
+            } else {
+                deselectMenuItem(item)
+            }
         }
-    }
-    
-    //Performing the change the the text label
-    func performChange(menuItem:MenuItem, shouldChange: Bool) {
-        if(shouldChange) {
-            //**Perform change only if touch point matches one of the cells**
-            currentSelectedItem = menuItem
-            menuItem.itemLabel.font = UIFont(name: fontFamilyName, size:enlargedTextSize)
-        } else {
-            menuItem.itemLabel.font = UIFont(name: fontFamilyName, size:originalTextSize)
-        }
-    }
-    
-    func longPressDetected() {
-        longPress = true
     }
     
     func nextAction() {
-        if(longPress) {
-            if(currentSelectedItem.viewController != nil && currentSelectedItem.destinationController != nil) {
-                println("It is working")
-                currentSelectedItem!.viewController.navigationController?.pushViewController(currentSelectedItem!.destinationController, animated: true)
-            }
+        if(currentSelectedItem.viewController != nil && currentSelectedItem.destinationController != nil) {
+            println("Pushing view controllers")
+            currentSelectedItem!.viewController.navigationController?.pushViewController(currentSelectedItem!.destinationController, animated: true)
+        } else {
+            touchCount = 1
         }
-
     }
     
 }

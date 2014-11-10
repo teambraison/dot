@@ -13,13 +13,13 @@ class ContactsViewController:UIViewController, UITableViewDataSource, UITableVie
 {
     @IBOutlet weak var contactsTableView: UITableView!
     
-    var contactNames = ["Pete Carol", "Steve Johnson", "Grandpa Jim"]
-    var messages = ["Hey, where are you?", "Been trying to find that thing in the garage", "I'm coming home tonight to eat dinner"]
+    var contactNames = ["Eric Kim", "Mason Joo", "Jason Lee", "Kikwang Sung"]
+    var messages = ["야 오디야", "아이퐁 식스", "I'm coming home tonight to eat dinner", "그럼"]
     
     override func viewDidLoad() {
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
-        self.contactsTableView.registerNib(UINib(nibName: "MenuItem", bundle: nil), forCellReuseIdentifier: "menuitem")
+        self.contactsTableView.registerNib(UINib(nibName: "ContactItem", bundle: nil), forCellReuseIdentifier: "contactitem")
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "returnToPreviousScreen")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -32,12 +32,12 @@ class ContactsViewController:UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        var cell = UITableViewCell()
-//        cell.textLabel.text = contactNames[indexPath.row]
-//        cell.detailTextLabel?.text = messages[indexPath.row]
-        var cell: MenuItem = tableView.dequeueReusableCellWithIdentifier("menuitem") as MenuItem
-        cell.itemLabel.font = UIFont(name: "Helvetica Neue", size: 35)
-        cell.itemLabel.text = contactNames[indexPath.row] + ": " + messages[indexPath.row]
+
+        var cell: ContactItem = tableView.dequeueReusableCellWithIdentifier("contactitem") as ContactItem
+        cell.contactName.font = UIFont(name: "Helvetica Neue", size: 35)
+        cell.contactName.text = contactNames[indexPath.row]
+        cell.contactMessage.text = messages[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     

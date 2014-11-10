@@ -24,6 +24,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var textIndex = -1
     var shouldReset = false
     var output = ""
+    var selectedColor: UIColor!
+    var originalColor: UIColor!
+    var selectedView:UIView!
     
     @IBOutlet weak var resetPressed: UIButton!
     override func viewDidLoad() {
@@ -42,6 +45,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         groups.insert(groupFive, atIndex:4)
         groups.insert(groupSix, atIndex:5)
         outputLabel.text = ""
+        
+        selectedColor = groupOne.backgroundColor
         
         resetPressed.addTarget(self, action: "resetTapped", forControlEvents: .TouchUpInside)
         
@@ -97,6 +102,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+  
+    }
+    
+    func changedSelectedGroup(theView: UIView) {
+        theView.backgroundColor = selectedColor
+    }
+    
+    func deselectingSelectedGroup(theView: UIView) {
+        theView.backgroundColor = originalColor
+    }
+    
     
     func addTapGestureToUI(theView: UIView) {
         var oneTap = UITapGestureRecognizer(target: self, action:"viewTapped:")
@@ -112,6 +133,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func viewTapped(tapGesture:UITapGestureRecognizer) {
+            selectedView = tapGesture.view!
             if(groupIndex == -1) {
                 groupIndex = getIndex(tapGesture.view!)
      //           println("Group \(groupIndex) selected")

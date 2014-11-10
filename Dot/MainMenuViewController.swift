@@ -35,7 +35,6 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
         var cell: MenuItem = tableView.dequeueReusableCellWithIdentifier("menuitem") as MenuItem
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.itemLabel.text = menuList[indexPath.row]
-        println("\(destinationVCIdentifiers[indexPath.row])")
        
         if(!destinationVCIdentifiers[indexPath.row].isEmpty) {
             let vc: UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier(destinationVCIdentifiers[indexPath.row]) as UIViewController
@@ -45,15 +44,15 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
             cell.viewController = nil
             cell.destinationController = nil
         }
-        var tapGesture = UITapGestureRecognizer(target: menuViewController, action: "nextAction")
-        var holdGesture = UILongPressGestureRecognizer(target: menuViewController, action: "longPressDetected")
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.delegate = menuViewController
-        holdGesture.numberOfTouchesRequired = 1
-        holdGesture.delegate = menuViewController
-        holdGesture.allowableMovement = 0
-        cell.addGestureRecognizer(tapGesture)
-        cell.addGestureRecognizer(holdGesture)
+//        var tapGesture = UITapGestureRecognizer(target: menuViewController, action: "nextAction")
+//        var holdGesture = UILongPressGestureRecognizer(target: menuViewController, action: "longPressDetected")
+//        tapGesture.numberOfTapsRequired = 1
+//        tapGesture.delegate = menuViewController
+//        holdGesture.numberOfTouchesRequired = 1
+//        holdGesture.minimumPressDuration = 0.2
+//        holdGesture.delegate = menuViewController
+//        cell.addGestureRecognizer(tapGesture)
+//        cell.addGestureRecognizer(holdGesture)
         cell.multipleTouchEnabled = true
 
         return cell
