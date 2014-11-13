@@ -14,6 +14,8 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var menuViewController: DotTableView!
     
+    var users:DotRequestAllUsers!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menuViewController.delegate = self
@@ -21,6 +23,7 @@ class MainMenuViewController:UIViewController, UITableViewDataSource, UITableVie
         menuViewController.multipleTouchEnabled = true
         self.menuViewController.registerNib(UINib(nibName: Data.menuItemNibName(), bundle: nil), forCellReuseIdentifier: Data.menuItemNibID())
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

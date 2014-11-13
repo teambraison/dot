@@ -29,13 +29,15 @@ class DotTableView:UITableView, UIGestureRecognizerDelegate
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         println("Touch count is \(touchCount)")
-        if(touchCount == 2) {
-            touchCount = 0
-            deselectMenuItem(currentSelectedItem)
-            nextAction()
-        } else if(touchCount == 1) {
-            touchCount = 0
-            deselectMenuItem(currentSelectedItem)
+        if(currentSelectedItem != nil) {
+            if(touchCount == 2) {
+                touchCount = 0
+                deselectMenuItem(currentSelectedItem)
+                nextAction()
+            } else if(touchCount == 1) {
+                touchCount = 0
+                deselectMenuItem(currentSelectedItem)
+            }
         }
     }
     

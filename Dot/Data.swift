@@ -35,11 +35,11 @@ class Data
     }
     
     class func menuNames() -> [String] {
-        return ["Navigation", "Messaging", "Time"]
+        return ["Bus", "Messaging", "Time", "Log In"]
     }
     
     class func menuDestinationIDS() -> [String] {
-        return ["placeholder", "contacts", ""]
+        return ["placeholder", "contacts", "", "login"]
     }
     
     class func menuItemNibName() -> String {
@@ -76,6 +76,22 @@ class Data
     
     class func contactItemHeight() -> CGFloat {
         return 92.0
+    }
+    
+    class func loginNames() -> [String] {
+        return ["Username", "Password", "Logged in as "]
+    }
+    
+    class func loginItemNibName() -> String {
+        return "LoginItem"
+    }
+    
+    class func loginItemNibID() ->String {
+        return "loginitem"
+    }
+    
+    class func loginItemHeight() -> CGFloat {
+        return 100.0
     }
     
     

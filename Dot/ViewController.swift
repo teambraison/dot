@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var characters = [["A", "B", "C", "D", "E", "F"], ["G", "H", "I", "J", "K", "L"], ["M", "N", "O", "P", "Q", "R"], ["S", "T", "U", "V", "W", "X"], ["Y", "Z", "1", "2", "3", "4"], ["5","6", "7", "8", "9", "0"]]
 
+    @IBOutlet weak var outputTextField: UITextField!
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var groupOne: UIView!
     @IBOutlet weak var groupTwo: UIView!
@@ -19,16 +20,31 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var groupFour: UIView!
     @IBOutlet weak var groupFive: UIView!
     @IBOutlet weak var groupSix: UIView!
+    
+    
+    @IBOutlet weak var labelOne: UILabel!
+    @IBOutlet weak var labelTwo: UILabel!
+    @IBOutlet weak var labelThree: UILabel!
+    @IBOutlet weak var labelFour: UILabel!
+    @IBOutlet weak var labelFive: UILabel!
+    @IBOutlet weak var labelSix: UILabel!
+    
     var groups : [UIView] = []
+    var labels : [UILabel] = []
     var groupIndex = -1
     var textIndex = -1
     var shouldReset = false
     var output = ""
-    var selectedColor: UIColor!
-    var originalColor: UIColor!
+    var selectedColor = UIColor.orangeColor()
+    var originalColor:UIColor!
     var selectedView:UIView!
+    var shouldBeLowerCase:Bool = false
+    
+    var key:String!
     
     @IBOutlet weak var resetPressed: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var oneTap = UITapGestureRecognizer(target: self, action:"viewTapped")
@@ -44,9 +60,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         groups.insert(groupFour, atIndex:3)
         groups.insert(groupFive, atIndex:4)
         groups.insert(groupSix, atIndex:5)
-        outputLabel.text = ""
         
-        selectedColor = groupOne.backgroundColor
+        labels.insert(labelOne, atIndex:0)
+        labels.insert(labelTwo, atIndex:1)
+        labels.insert(labelThree, atIndex:2)
+        labels.insert(labelFour, atIndex:3)
+        labels.insert(labelFive, atIndex:4)
+        labels.insert(labelSix, atIndex:5)
+        
+        contractAllGroup()
+        
+        outputTextField.text = ""
+
+        originalColor = UIColor(red:49/255.0, green: 109/255.0, blue: 217/255.0, alpha: 1.0)
         
         resetPressed.addTarget(self, action: "resetTapped", forControlEvents: .TouchUpInside)
         
@@ -72,30 +98,89 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
+        var twoSwipeRight = UISwipeGestureRecognizer(target: self, action:"saveAndReturn")
+        twoSwipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        twoSwipeRight.numberOfTouchesRequired = 2
+        self.view.addGestureRecognizer(twoSwipeRight)
+        
+        var threeFingerDown = UISwipeGestureRecognizer(target: self, action:"switchToLowerCase")
+        threeFingerDown.numberOfTouchesRequired = 3
+        threeFingerDown.direction = UISwipeGestureRecognizerDirection.Down
+        self.view.addGestureRecognizer(threeFingerDown)
+        
+        var threeFingerUp = UISwipeGestureRecognizer(target: self, action: "switchToUpperCase")
+        threeFingerUp.numberOfTouchesRequired = 3
+        threeFingerUp.direction = UISwipeGestureRecognizerDirection.Up
+        self.view.addGestureRecognizer(threeFingerUp)
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func switchToLowerCase() {
+        println("Switching to lower case")
+        shouldBeLowerCase = true
+        for(var i = 0; i < groups.count; i++)
+        {
+            var allViews = groups[i].subviews
+            for(var k = 0; k < allViews.count; k++)
+            {
+                var label:UILabel = allViews[k] as UILabel
+                label.text =  label.text?.lowercaseString
+            }
+        }
+    }
+    
+    func switchToUpperCase() {
+        println("Switching to upper case")
+        for(var i = 0; i < groups.count; i++)
+        {
+            var allViews = groups[i].subviews
+            for(var k = 0; k < allViews.count; k++)
+            {
+                var label:UILabel = allViews[k] as UILabel
+                label.text =  label.text?.uppercaseString
+            }
+        }
+        shouldBeLowerCase = false
+    }
+    
+    func setKey(theKey: String) {
+        key = theKey
+    }
+    
+    func saveAndReturn() {
+        let keyboardHolder = KeyboardPlaceHolder.sharedInstance
+        if(keyboardHolder.store == nil){
+            keyboardHolder.store = NSMutableDictionary()
+            keyboardHolder.store.setValue(outputTextField.text, forKey: key)
+        } else {
+            keyboardHolder.store.setValue(outputTextField.text, forKey: key)
+        }
+        returnToPreviousScreen()
     }
     
     func insertSpacePunctuation() {
         output += " "
-        outputLabel.text = output
+        outputTextField.text = output
     }
     
     func insertCommaPunctuation() {
         output += ","
-        outputLabel.text = output
+        outputTextField.text = output
     }
     
     func deleteOneCharacter() {
         if(countElements(output) > 0) {
             output = output.substringToIndex(output.endIndex.predecessor())
-            outputLabel.text = output
+            outputTextField.text = output
         }
     }
     
     func insertPeriodPunctuation() {
         output += "."
-        outputLabel.text = output
+        outputTextField.text = output
     }
+    
     
     func returnToPreviousScreen()
     {
@@ -128,24 +213,47 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     func resetTapped() {
         println("Reset button pressed")
         output = ""
-        outputLabel.text = ""
+        outputTextField.text = ""
     }
     
     
     func viewTapped(tapGesture:UITapGestureRecognizer) {
             selectedView = tapGesture.view!
             if(groupIndex == -1) {
-                groupIndex = getIndex(tapGesture.view!)
-     //           println("Group \(groupIndex) selected")
+                groupIndex = getIndex(selectedView)
+                expandTheGroup(characters[groupIndex])
+                
             } else if(textIndex == -1) {
                 textIndex = getIndex(tapGesture.view!)
-       //         println("Text position \(textIndex) selected")
-                output += (characters[groupIndex][textIndex])
-                outputLabel.text = output
-                println(characters[groupIndex][textIndex])
+                var selectedCharacter = characters[groupIndex][textIndex]
+                if(shouldBeLowerCase) {
+                    selectedCharacter = selectedCharacter.lowercaseString
+                }
+                output += selectedCharacter
+                outputTextField.text = output
+//                println(characters[groupIndex][textIndex])
                 groupIndex = -1
                 textIndex = -1
+                contractAllGroup()
             }
+    }
+    
+    func expandTheGroup(characters: [String]) {
+        for(var i = 0; i < labels.count; i++) {
+            var label: UILabel = labels[i] as UILabel
+            label.hidden = false
+            if(shouldBeLowerCase) {
+                label.text = characters[i].lowercaseString
+            } else {
+                label.text = characters[i]
+            }
+        }
+    }
+    func contractAllGroup() {
+        for(var i = 0; i < labels.count; i++) {
+            var label: UILabel = labels[i] as UILabel
+            label.hidden = true
+        }
     }
     
     func getIndex(theView: UIView) -> Int {
