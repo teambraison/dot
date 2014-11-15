@@ -23,22 +23,23 @@ class DotTableView:UITableView, UIGestureRecognizerDelegate
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        touchCount++
+//        touchCount++
         checkForTouchPoint(touches)
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        println("Touch count is \(touchCount)")
-        if(currentSelectedItem != nil) {
-            if(touchCount == 2) {
-                touchCount = 0
-                deselectMenuItem(currentSelectedItem)
-                nextAction()
-            } else if(touchCount == 1) {
-                touchCount = 0
-                deselectMenuItem(currentSelectedItem)
-            }
-        }
+//        println("Touch count is \(touchCount)")
+//        if(currentSelectedItem != nil) {
+//            if(touchCount == 2) {
+//                touchCount = 0
+//                deselectMenuItem(currentSelectedItem)
+//                nextAction()
+//            } else if(touchCount == 1) {
+//                touchCount = 0
+//                deselectMenuItem(currentSelectedItem)
+//            }
+//        }
+        nextAction()
     }
     
     func setTextSize(enlargedSize: CGFloat, originalSize: CGFloat, fontFamily: String) {
@@ -80,7 +81,6 @@ class DotTableView:UITableView, UIGestureRecognizerDelegate
     
     private func nextAction() {
         if(currentSelectedItem.viewController != nil && currentSelectedItem.destinationController != nil) {
-            println("Pushing view controllers")
             currentSelectedItem!.viewController.navigationController?.pushViewController(currentSelectedItem!.destinationController, animated: true)
         } else {
             touchCount = 1

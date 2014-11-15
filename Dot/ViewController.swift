@@ -77,7 +77,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         resetPressed.addTarget(self, action: "resetTapped", forControlEvents: .TouchUpInside)
         
         
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "insertSpacePunctuation")
+//        var swipeDown = UISwipeGestureRecognizer(target: self, action: "insertSpacePunctuation")
+        var swipeDown = UISwipeGestureRecognizer(target: self, action: "switchToLowerCase")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipeDown)
         
@@ -86,11 +87,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         twoSwipeDown.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(twoSwipeDown)
         
-        var swipeUp = UISwipeGestureRecognizer(target: self, action: "insertCommaPunctuation")
+     //   var swipeUp = UISwipeGestureRecognizer(target: self, action: "insertCommaPunctuation")
+        var swipeUp = UISwipeGestureRecognizer(target: self, action: "switchToUpperCase")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
         self.view.addGestureRecognizer(swipeUp)
         
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "deleteOneCharacter")
+ //       var swipeLeft = UISwipeGestureRecognizer(target: self, action: "deleteOneCharacter")
+        var swipeLeft = UISwipeGestureRecognizer(target:self, action:"saveAndReturn")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
@@ -117,7 +120,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func switchToLowerCase() {
-        println("Switching to lower case")
         shouldBeLowerCase = true
         for(var i = 0; i < groups.count; i++)
         {
@@ -131,7 +133,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func switchToUpperCase() {
-        println("Switching to upper case")
         for(var i = 0; i < groups.count; i++)
         {
             var allViews = groups[i].subviews
@@ -211,7 +212,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func resetTapped() {
-        println("Reset button pressed")
         output = ""
         outputTextField.text = ""
     }
@@ -231,7 +231,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 }
                 output += selectedCharacter
                 outputTextField.text = output
-//                println(characters[groupIndex][textIndex])
                 groupIndex = -1
                 textIndex = -1
                 contractAllGroup()

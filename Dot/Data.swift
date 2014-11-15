@@ -90,8 +90,28 @@ class Data
         return "loginitem"
     }
     
+    class func loginControllerID() -> String {
+        return "login"
+    }
+    
     class func loginItemHeight() -> CGFloat {
         return 100.0
+    }
+    
+    class func messageViewControllerID() -> String {
+        return "messageview"
+    }
+    
+    class func dotDialogBoxNibName() -> String {
+        return "DotDialogBox"
+    }
+    
+    class func dotDialogBoxNibID() -> String {
+        return "dialogbox"
+    }
+    
+    class func messageKey() -> String {
+        return "privatemessage"
     }
     
     

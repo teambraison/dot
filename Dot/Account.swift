@@ -26,4 +26,7 @@ class Account:NSObject
     var session_id: String!
     var username: String!
     var password: String!
+    var user_id: String!
+    var isAuthenticated = false
+    
 }
